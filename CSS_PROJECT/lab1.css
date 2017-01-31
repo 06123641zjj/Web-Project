@@ -1,0 +1,44 @@
+/*Use the universal selector (*) so that if you hover over ANY element, it is highlighted yellow.Ignore the html and body*/
+html body *:hover { background-color:yellow;}
+
+ul{margin:0px 0px 10px 0px;padding:0px 15px 15px 15px }
+
+body {background-color: #17375E ;}
+
+/*The subtitle should have 0.8em font.*/
+.titleBox h2{font-size:0.8em}
+
+/*The text of each blog entry should be widened so that it fills the entire width of its section (i.e. ¡°fully justified¡±).*/
+.entry p{text-align:Justify}
+
+/*The images should float on the right side of a blog entry next to the surrounding text. They must stay within the bounds of the enclosing box, and not bleed into other content.*/
+img{float: right; width:200px; margin-left:10px}
+
+/*The white containing box should have a solid, black, 4--px border.*/
+.whiteContainer{background-color: #ffffff; border: 4px solid black}
+.whiteContainer{position: relative; margin:5px 15px 5px 15px; padding:8px}
+
+/*The blog boxes should have have a solid, black, 2--px border.*/
+.article1,.article2{border: 2px solid black; margin:5px;}
+
+/*The title box should have a solid, black, 1--px border.*/
+.titleBox{background-color: #C7D9F1; border: 1px solid black;margin:0px 11px 0px 5px;}
+
+.titleBox {text-align:right; padding:0px 25px;}
+
+/*The hyperlinks should be underlined and change color to red when moused-- over (using the hover pseudoclass).*/
+a:hover{text-decoration: underline; color: red;}
+
+/*The friends box is a left--aligned independent div. The friends box should have a solid, black, 4--px border.*/
+.friend {background-color: #660066; width:27%; color:#ffffff;float:left;border: 4px solid black;margin:23px 5px; overflow: hidden;padding:0px 0px 0px 5px}
+
+/*remove the underline*/
+.list{color:white; text-decoration: none;}
+
+.entry{overflow:hidden;border:0px; margin:13px 0px;}
+
+.article1 , .article2{padding: 25px 15px 15px 35px;overflow:auto; background-color:#c3d79d;margin:10px}
+
+
+
+
