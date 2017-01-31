@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>COMP484 Lab2 Jingjie Zhang,Jian Chen</title>
+		<style type="text/css">
+			.purple{background:#da70d6;}
+		</style>
+
+		
+		<script>
+			//team member Jingjie Zhang (106671199) and Jian Chen (104936856)
+			function start()
+			{
+				document.getElementById("subCheck").addEventListener("click",displayError,false);
+			}
+			
+			function displayError()
+			{
+				/* In the error array, 5 means it's empty*/
+				/* index 0,first name ; index 1,last name ; index 2 ID ;index 3,bio*/				
+				/* for name:1 means not all letter . 2 means not capitalized. */
+				/* for id:1 means not number . 2 means not 9 digits.*/
+				var errorArray=checkValidity();
+				//clear all preivous error message
+				document.getElementById("eM1").innerHTML="&nbsp";
+				document.getElementById("eM2").innerHTML="&nbsp";
+				document.getElementById("eM3").innerHTML="&nbsp";
+				document.getElementById("eM4").innerHTML="&nbsp";
+				
+				//if input is valid,clear the background colour, summarizing all the values the user entered
+				if(errorArray[0]+errorArray[1]+errorArray[2]+errorArray[3] === 0)
+				{
+					document.getElementById("bgcp").setAttribute("class","white");
+					var str="";
+					str="First name is: "+document.getElementById("fName").value+"\n";
+					str=str+"Last name is: "+document.getElementById("lName").value+"\n";
+					str=str+"Id is: "+document.getElementById("sId").value+"\n";
+					str=str+"Biography is: "+document.getElementById("bio").value+"\n";
+					str=str+"Form submission was successful."
+					alert(str);
+				}
+				//if input is not valid, change the background colour
+				else
+					document.getElementById("bgcp").setAttribute("class","purple");
+				//Display error message if the input is not valid by checking the error array
+				//first name
+				if(errorArray[0]===1)
+				{
+					document.getElementById("eM1").innerHTML="First name must be all letters.";
+				}
+				if(errorArray[0]===2)
+				{
+					document.getElementById("eM1").innerHTML="First letter must be capitalized.";
+				}
+				if(errorArray[0]===5)
+				{
+					document.getElementById("eM1").innerHTML="First name should not be empty.";
+				}
+				//last name
+				if(errorArray[1]===1)
+				{
+					document.getElementById("eM2").innerHTML="Last name must be all letters.";
+				}
+				if(errorArray[1]===2)
+				{
+					document.getElementById("eM2").innerHTML="First letter must be capitalized.";
+				}
+				if(errorArray[1]===5)
+				{
+					document.getElementById("eM2").innerHTML="Last name should not be empty.";
+				}
+				//id
+				if(errorArray[2]===1)
+				{
+					document.getElementById("eM3").innerHTML="ID must be all numbers.";
+				}
+				if(errorArray[2]===2)
+				{
+					document.getElementById("eM3").innerHTML="ID must be 9 digits.";
+				}
+				if(errorArray[2]===5)
+				{
+					document.getElementById("eM3").innerHTML="ID should not be empty.";
+				}
+				//bio
+				if(errorArray[3]!==0)
+				{
+					document.getElementById("eM4").innerHTML="Biography must be at most 25 words.You have "+ errorArray[3]+".";
+				}
+				if(errorArray[3]===5)
+				{
+					document.getElementById("eM4").innerHTML="Biography should not be empty.";
+				}
+			}
+			
+			function checkValidity()
+			{	
+				/* In the error array, 5 means it's empty*/
+				/* index 0,first name ; index 1,last name ; index 2 ID ;index 3,bio*/				
+				/* for name:1 means not all letter . 2 means not capitalized. */
+				/* for id:1 means not number . 2 means not 9 digits.*/
+				var errorArray=new Array(4);
+				/*check first name*/
+				var str=document.getElementById("fName").value;
+				if(str.length===0)
+					errorArray[0]=5;
+				else
+					errorArray[0]=checkName(str);
+				
+				/*check last name*/
+				str=document.getElementById("lName").value;
+				if(str.length===0)
+					errorArray[1]=5;
+				else
+					errorArray[1]=checkName(str);
+				
+				/*check ID*/
+				str=document.getElementById("sId").value;
+				if(str.length===0)
+					errorArray[2]=5;
+				else				
+					errorArray[2]=checkId(str);
+				
+				/*check bio*/
+				str=document.getElementById("bio").value;
+				if(str.length===0)
+					errorArray[3]=5;
+				else
+					errorArray[3]=checkParagraph(str);
+				
+				//return an array contain all error information
+				return errorArray;
+			}
+			
+			//check length of bio
+			function checkParagraph(str)
+			{	
+				var strArr=str.split(" ");
+				var flag=0;
+				if(strArr.length>25)
+					flag=strArr.length;
+				return flag;
+			}
+			
+			/* for id:1 means not number . 2 means not 9 digits.*/
+			function checkId(id)
+			{
+				var flag=0;
+				//check length
+				if(id.length!==9)
+				{
+					flag=2;
+				}
+				//check whether it's all number
+				else
+				{
+					for(i=0;i<id.length;i++)
+					{
+						if( !isDigit(id.charAt(i)))
+						{
+							flag=1;
+							break;
+						}
+					}
+				}
+				return flag;
+			}
+			
+			//test whether the input is a number
+			function isDigit(d)
+			{
+				if(d>='0' && d<='9')
+					return true;
+				else 
+					return false;
+			}
+			
+			/*1 means not all letter . 2 means not capitalized. */
+			function checkName(str)
+			{
+				var flag=0;
+				for(i=0;i<str.length;i++)
+				{
+					var c=str.charAt(i);
+					/*not a letter*/
+					if(c.toLowerCase()===c.toUpperCase())
+					{
+						flag=1;
+						break;
+					}
+				}
+				/* whether capitalized or not*/
+				var c=str.charAt(0)
+				if(flag===0 && c!==c.toUpperCase())
+				{
+					flag=2;
+				}
+				return flag;
+			}
+			
+			window.addEventListener("load",start,false);
+		</script>
+	</head>
+	<body id="bgcp">
+		<form name="regForm" action="#" method="post">
+			<table >
+				<tr>
+				    <!--lable cell-->
+					<td width="100">
+						<label for="fName">First name: </label>
+					</td>
+					<!--input cell-->
+					<td>
+						<input type="text" id="fName" />
+					</td>
+				</tr>
+				<tr>
+					<!--error message cell-->
+					<td colspan="2">
+						<p style="color:green; font-weight:bold; font-size:3ex" id="eM1">&nbsp</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="100">
+						<label for="lName">Last name: </label>
+					</td>
+					<td>
+						<input type="text" id="lName" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<p style="color:green; font-weight:bold; font-size:3ex" id="eM2">&nbsp</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="100">
+						<label for="sId">Student ID: </label>
+					</td>
+					<td>
+						<input type="text" id="sId" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<p style="color:green; font-weight:bold; font-size:3ex" id="eM3">&nbsp</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="100" valign="TOP">
+						<label for="bio">Biography: </label>
+					</td>				
+					<td>
+						<textarea id="bio"></textarea>	
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<p style="color:green; font-weight:bold; font-size:3ex" id="eM4">&nbsp</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="100">
+						
+					</td>
+					<td >
+						<!--In the lecture, professor Kaplan said we can use a ordinary button instead of using the submit button with preventDefault function.-->
+						<input type="button" value="submit" id="subCheck" />
+					</td>
+				</tr>
+				<tr><td colspan="2">team member: Jingjie Zhang (106671199) and Jian Chen (104936856)</td></tr>
+			</table>
+		</form>
+	</body>
+</html>
