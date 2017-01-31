@@ -1,0 +1,2 @@
+This project has a php file which return a different html file depends on the user movement(main page, login page or register page).
+The php file will add/retrieve information to/from mysql database. Database is set on my own device.
