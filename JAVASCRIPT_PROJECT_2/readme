@@ -1,0 +1,4 @@
+1, This lab will be a web page containing a quiz implemented upon an interactive Google Map.
+2, The quiz will contain five question about the location of buildings in California State University, Northridge. 
+3, The user will double click the location of the building on the map. The web page will show the answer with green lines( If the user answer is correct ) or red line( If the user answer is worng ).
+4, A the end, the total score will be displayed on the screen together with all the correct answer.
