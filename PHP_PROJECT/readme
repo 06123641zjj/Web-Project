@@ -1,2 +1,2 @@
-This project has a php file which return different html files depends on the user operation(main page, login page or register page).
+This project has a php file which return different html files depends on the user operation(browse main page, login page or register page).
 The php file will add/retrieve information to/from mysql database. Database is set on my own device.
